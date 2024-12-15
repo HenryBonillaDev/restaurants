@@ -3,7 +3,7 @@ from django.db import models
 
 from menu_items.domain.models import MenuItem
 from restaurants.domain.models import Restaurant
-from users.domain.models import User
+from users.models import User
 
 class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

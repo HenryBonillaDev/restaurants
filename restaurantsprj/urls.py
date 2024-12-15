@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +27,7 @@ urlpatterns = [
     path('orders/', include('orders.infrastructure.http.urls')),
     path('restaurants/', include('restaurants.infrastructure.http.urls')),
     path('menu-items/', include('menu_items.infrastructure.http.urls')),
-    path('users/', include('users.infrastructure.http.urls')),  
+    path('users/', include('users.infrastructure.http.urls')),
+    path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
