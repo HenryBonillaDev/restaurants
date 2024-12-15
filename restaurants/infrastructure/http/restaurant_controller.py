@@ -11,8 +11,8 @@ from restaurants.application.filters.restaurant_filter import RestaurantFilter
 from drf_spectacular.utils import extend_schema
 
 
-@extend_schema(request=RestaurantSerializer, methods=["POST","PATCH"])
-class RestaurantController(APIView):
+@extend_schema(request=RestaurantSerializer, methods=["POST"])
+class GetPost(APIView):
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_class = RestaurantFilter
@@ -41,6 +41,9 @@ class RestaurantController(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@extend_schema(request=RestaurantSerializer, methods=["PATCH"])
+class EditOrDelete(APIView):
+    permission_classes = [IsAuthenticated]
     def patch(self, request, pk):
         restaurant = get_object_or_404(Restaurant, pk=pk, active=True)
         serializer = RestaurantSerializer(restaurant, data=request.data, partial=True)
