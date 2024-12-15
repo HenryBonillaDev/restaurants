@@ -6,20 +6,29 @@ from django.shortcuts import get_object_or_404
 from restaurants.domain.models import Restaurant
 from restaurants.application.restaurant_serializer import RestaurantSerializer
 from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from restaurants.application.filters.restaurant_filter import RestaurantFilter
 from drf_spectacular.utils import extend_schema
 
 
 @extend_schema(request=RestaurantSerializer, methods=["POST","PUT"])
 class RestaurantController(APIView):
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = RestaurantFilter
 
     def get(self, request):
         restaurants = Restaurant.objects.filter(active=True)
+        filterset = self.filterset_class(request.GET, queryset=restaurants)
+        if not filterset.is_valid():
+            return Response(filterset.errors, status=400)
+        filtered_restaurants = filterset.qs
+
         paginator = PageNumberPagination()
         page_size = request.query_params.get('page_size')
         if page_size:
             paginator.page_size = int(page_size)
-        result_page = paginator.paginate_queryset(restaurants, request)
+        result_page = paginator.paginate_queryset(filtered_restaurants, request)
         serializer = RestaurantSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
 
