@@ -9,15 +9,7 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         username = data.get('username')
         password = data.get('password')
-
-        print(f'Intentando autenticar con username: {username}, password: {password}')
         user = authenticate(username=username, password=password)
-        
-        if user:
-            print(f'Usuario autenticado: {user}')
-        else:
-            print('Autenticación fallida')
-
         if user and user.is_active:
             refresh = RefreshToken.for_user(user)
             return {
