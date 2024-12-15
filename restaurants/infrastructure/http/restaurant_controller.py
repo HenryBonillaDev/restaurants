@@ -11,7 +11,7 @@ from restaurants.application.filters.restaurant_filter import RestaurantFilter
 from drf_spectacular.utils import extend_schema
 
 
-@extend_schema(request=RestaurantSerializer, methods=["POST","PUT"])
+@extend_schema(request=RestaurantSerializer, methods=["POST","PATCH"])
 class RestaurantController(APIView):
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
