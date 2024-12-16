@@ -11,6 +11,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis
     environment:
       - DEBUG=True
       - DB_NAME=postgres
@@ -30,6 +31,31 @@ services:
       - POSTGRES_DB=postgres
     ports:
       - "5432:5432"
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_worker
+    command: celery -A restaurantsprj worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    environment:
+      - DEBUG=True
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
 
 volumes:
   postgres_data:

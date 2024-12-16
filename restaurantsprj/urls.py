@@ -30,4 +30,6 @@ urlpatterns = [
     path('users/', include('users.infrastructure.http.urls')),
     path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('reports/', include('reports.infrastructure.http.urls')),
+    path('bulk-upload/', include('bulk_upload.infrastructure.http.urls')),
 ]

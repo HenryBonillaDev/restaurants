@@ -45,11 +45,14 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'drf_spectacular',
+    'django_celery_results',
     # My apps
     'menu_items',
     'orders',
     'restaurants',
     'users',
+    'reports',
+    'bulk_upload'
 ]
 
 REST_FRAMEWORK = {
@@ -74,6 +77,8 @@ MIGRATION_MODULES = {
     'menu_items': 'menu_items.infrastructure.migrations',
     'users': 'users.infrastructure.migrations',
     'orders': 'orders.infrastructure.migrations',
+    'reports': 'reports.infrastructure.migrations',
+    'bulk_upload': 'bulk_upload.infrastructure.migrations'
 }
 
 MIDDLEWARE = [
@@ -128,6 +133,13 @@ DATABASES = {
     }
 }
 
+# Celery settings
+CELERY_BROKER_URL="redis://redis:6379/0"
+CELERY_RESULT_BACKEND="redis://redis:6379/0"
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+CELERY_ENABLE_UTC = True
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -171,9 +183,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Sistema de Gestión de Pedidos para Restaurantes',
