@@ -1,0 +1,20 @@
+username;password;email;role;first_name;last_name;phone;default_address;restaurant
+dealer1;password123;dealer1@example.com;dealer;Henry;Doe;123456789;123 Main St;
+customer1;password123;customer1@example.com;customer;Jane;Smith;987654321;456 Oak St;
+dealer2;password123;dealer2@example.com;dealer;John;Doe;1234567890;789 Pine St;
+customer2;password123;customer2@example.com;customer;Emily;Brown;555123456;101 Maple St;
+dealer3;password123;dealer3@example.com;dealer;Alice;Johnson;555234567;202 Birch St;
+customer3;password123;customer3@example.com;customer;Bob;Williams;555345678;303 Cedar St;
+dealer4;password123;dealer4@example.com;dealer;Charlie;Taylor;555456789;404 Elm St;
+customer4;password123;customer4@example.com;customer;David;Moore;555567890;505 Fir St;
+dealer5;password123;dealer5@example.com;dealer;Eva;Clark;555678901;606 Pine St;
+customer5;password123;customer5@example.com;customer;Frank;Miller;555789012;707 Oak St;
+dealer6;password123;dealer6@example.com;dealer;Grace;Davis;555890123;808 Birch St;
+customer6;password123;customer6@example.com;customer;Hank;Wilson;555901234;909 Cedar St;
+dealer7;password123;dealer7@example.com;dealer;Ivy;Moore;555012345;1011 Elm St;
+customer7;password123;customer7@example.com;customer;Jack;Anderson;5551234567;1122 Maple St;
+dealer8;password123;dealer8@example.com;dealer;Liam;Thomas;5552345678;1233 Pine St;
+customer8;password123;customer8@example.com;customer;Mona;Jackson;5553456789;1344 Oak St;
+dealer9;password123;dealer9@example.com;dealer;Nina;White;5554567890;1455 Cedar St;
+customer9;password123;customer9@example.com;customer;Oscar;Harris;5555678901;1566 Elm St;
+dealer10;password123;dealer10@example.com;dealer;Paul;Young;5556789012;1677 Birch St;
